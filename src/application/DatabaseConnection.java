@@ -4,35 +4,41 @@ import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DatabaseConnection {
 	
 	public DatabaseConnection(){
 		
 	}
-	
-	
-	private void Connect(){
-		try{  
-			//step1 load the driver class  
-			Class.forName("oracle.jdbc.driver.OracleDriver");  
-			  
-			//step2 create  the connection object  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
-			  
-			//step3 create the statement object  
-			java.sql.Statement stmt=con.createStatement();  
-			  
-			//step4 execute query  
-			ResultSet rs=((java.sql.Statement) stmt).executeQuery("select * from emp");  
-			while(rs.next())  
-			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-			  
-			//step5 close the connection object  
-			con.close();  
-			  
-			}catch(Exception e){ System.out.println(e);} 
+
+
+	public Connection GetConnection() {
+		Connection connection = null;
+
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}
+		catch(ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+
+		try
+		{
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "Motykson", "siekiera15");
+
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Connection failed");
+			e.printStackTrace();
+			return null;
+		}
+
+		return connection;
 	}
 
 }
