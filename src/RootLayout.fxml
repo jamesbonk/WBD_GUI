@@ -20,33 +20,41 @@
 												<HBox layoutX="70.0" layoutY="36.0">
 													<children>
 														<Label id="klientLbl" layoutX="70.0" layoutY="40.0" prefHeight="17.0" prefWidth="52.0" text="Klient: " />
-														<ChoiceBox fx:id="klientSelectBox" onAction="#getClient" layoutX="150.0" layoutY="36.0" prefWidth="150.0" />
+														<ChoiceBox fx:id="klientSelectBox" layoutX="150.0" layoutY="36.0" onAction="#showPreferences" prefWidth="150.0" />
 													</children>
 												</HBox>
 												<HBox layoutX="351.0" layoutY="34.0">
 													<children>
 														<Label id="preferencjaLbl" layoutX="351.0" layoutY="35.0" prefHeight="17.0" prefWidth="80.0" text="Preferencje:" />
-														<ComboBox fx:id="preferencjeSelectBox" layoutX="455.0" layoutY="34.0" prefWidth="150.0" />
 													</children>
 												</HBox>
-												<Button fx:id="szukajBtn" onAction="#getOffers" contentDisplay="CENTER" layoutX="276.0" layoutY="103.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Szukaj ofert" textAlignment="CENTER" />
-                                    <TextField id="abcd" layoutX="97.0" layoutY="106.0" />
+												<Button fx:id="szukajBtn" contentDisplay="CENTER" layoutX="224.0" layoutY="104.0" mnemonicParsing="false" onAction="#getOffers" prefHeight="30.0" prefWidth="151.0" text="Szukaj ofert" textAlignment="CENTER" />
+                                    <CheckBox fx:id="rodzaj" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" text="Rodzaj" />
+                                    <CheckBox fx:id="typ" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" text="Typ nieruchomości" />
+                                    <CheckBox fx:id="miasto" layoutX="437.0" layoutY="40.0" mnemonicParsing="false" text="Miasto" />
+                                    <CheckBox fx:id="dzielnica" layoutX="520.0" layoutY="40.0" mnemonicParsing="false" text="Dzielnica" />
+                                    <CheckBox fx:id="pow_od" layoutX="437.0" layoutY="61.0" mnemonicParsing="false" text="Pow od" />
+                                    <CheckBox fx:id="pow_do" layoutX="520.0" layoutY="61.0" mnemonicParsing="false" text="Pow do" />
+                                    <CheckBox fx:id="pietro_od" layoutX="437.0" layoutY="81.0" mnemonicParsing="false" text="Pietro od" />
+                                    <CheckBox fx:id="pietro_do" layoutX="520.0" layoutY="81.0" mnemonicParsing="false" text="Pietro do" />
+                                    <CheckBox fx:id="pokoje_od" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje od" />
+                                    <CheckBox fx:id="pokoje_do" layoutX="520.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje do" />
 											</children>
 										</AnchorPane>
 										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <TableView id="ofertyTable" layoutX="14.0" layoutY="46.0" prefHeight="149.0" prefWidth="721.0">
                                       <columns>
-                                        <TableColumn id="idOfertyColumn" prefWidth="39.0" text="ID " />
-                                        <TableColumn id="statusColumn" prefWidth="61.0" text="STATUS" />
-                                          <TableColumn id="rodzajColumn" prefWidth="73.0" text="RODZAJ" />
-                                          <TableColumn id="cenaColumn" prefWidth="76.0" text="CENA" />
-                                          <TableColumn id="miastoColumn" prefWidth="64.0" text="MIASTO" />
-                                          <TableColumn id="ulicaColumn" prefWidth="73.0" text="ULICA" />
-                                          <TableColumn id="typColumn" prefWidth="69.0" text="TYP" />
-                                          <TableColumn id="powColumn" prefWidth="68.0" text="POW. " />
-                                          <TableColumn id="pietroColumn" prefWidth="93.0" text="PIĘTRO" />
-                                          <TableColumn id="pokojeColumn" prefWidth="103.0" text="POKOJE" />
+                                        <TableColumn fx:id="idOfertyColumn" prefWidth="39.0" text="ID " />
+                                        <TableColumn fx:id="statusColumn" prefWidth="61.0" text="STATUS" />
+                                          <TableColumn fx:id="rodzajColumn" prefWidth="73.0" text="RODZAJ" />
+                                          <TableColumn fx:id="cenaColumn" prefWidth="76.0" text="CENA" />
+                                          <TableColumn fx:id="miastoColumn" prefWidth="64.0" text="MIASTO" />
+                                          <TableColumn fx:id="ulicaColumn" prefWidth="73.0" text="ULICA" />
+                                          <TableColumn fx:id="typColumn" prefWidth="69.0" text="TYP" />
+                                          <TableColumn fx:id="powColumn" prefWidth="68.0" text="POW. " />
+                                          <TableColumn fx:id="pietroColumn" prefWidth="93.0" text="PIĘTRO" />
+                                          <TableColumn fx:id="pokojeColumn" prefWidth="103.0" text="POKOJE" />
                                       </columns>
                                     </TableView>
                                     <Label id="wynikLbl" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="107.0" text="Wynik:" />
