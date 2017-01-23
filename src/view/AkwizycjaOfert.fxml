@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NegotiationsController">
+	<children>
+		<AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<TableView id="negocjacieTable" fx:id="negocjacjeTable" layoutX="19.0" layoutY="39.0" prefHeight="249.0" prefWidth="696.0">
+					<columns>
+						<TableColumn id="idBudynkuColumn" fx:id="idBudynkuColumn" prefWidth="52.0" text="ID BUDYNKU" />
+						<TableColumn id="deweloperColumn" fx:id="deweloperColumn" prefWidth="75.0" text="DEWELOPER" />
+						<TableColumn id="pracownikColumn" fx:id="pracownikColumn" minWidth="0.0" prefWidth="78.0" text="PRACOWNIK" />
+						<TableColumn id="stanColumn" fx:id="stanColumn" prefWidth="60.0" text="STAN" />
+						<TableColumn id="typColumn" fx:id="typColumn" minWidth="0.0" prefWidth="51.0" text="TYP " />
+						<TableColumn id="iloscColumn" fx:id="iloscColumn" prefWidth="55.0" text="ILOSC" />
+						<TableColumn id="powColumn" fx:id="powColumn" prefWidth="67.0" text="POW." />
+						<TableColumn id="miastoColumn" fx:id="miastoColumn" prefWidth="78.0" text="MIASTO" />
+						<TableColumn id="ulicaColumn" fx:id="ulicaColumn" prefWidth="85.0" text="ULICA" />
+						<TableColumn id="nrBudynkuColumn" fx:id="nrBudynkuColumn" prefWidth="94.0" text="NR. BUDYNKU" />
+					</columns>
+				</TableView>
+				<Button fx:id="btnLoadProperties" layoutX="277.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleLoadProperties" prefHeight="59.0" prefWidth="181.0" text="Załaduj nieruchomości do bazy" />
+				<Label id="negocjacjeLbl" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="135.0" text="Prowadzone negocjacje:" />
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>
