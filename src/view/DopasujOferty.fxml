@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -7,7 +8,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersController">
    <children>
-      <SplitPane dividerPositions="0.5" layoutX="173.0" layoutY="31.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="750.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.3815789473684211" layoutX="173.0" layoutY="31.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="750.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
           <children>
@@ -17,27 +18,43 @@
                         <ChoiceBox fx:id="klientSelectBox" layoutX="150.0" layoutY="36.0" onAction="#showPreferences" prefWidth="150.0" />
                      </children>
                   </HBox>
-                  <HBox layoutX="351.0" layoutY="34.0">
+                  <HBox layoutX="351.0" layoutY="34.0" />
+                  <Button fx:id="szukajBtn" contentDisplay="CENTER" layoutX="122.0" layoutY="94.0" mnemonicParsing="false" onAction="#getOffers" prefHeight="30.0" prefWidth="150.0" text="Szukaj ofert" textAlignment="CENTER" />
+                  <HBox layoutX="334.0" layoutY="30.0" prefHeight="123.0" prefWidth="299.0">
                      <children>
-                        <Label id="preferencjaLbl" layoutX="351.0" layoutY="35.0" prefHeight="17.0" prefWidth="80.0" text="Preferencje:" />
+                        <Label id="preferencjaLbl" layoutX="334.0" layoutY="40.0" prefHeight="17.0" prefWidth="80.0" text="Preferencje:" />
+                        <GridPane layoutX="446.0" layoutY="30.0" prefHeight="123.0" prefWidth="191.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="90.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="106.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="dzielnica" layoutX="520.0" layoutY="40.0" mnemonicParsing="false" text="Dzielnica" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="pietro_od" layoutX="437.0" layoutY="81.0" mnemonicParsing="false" text="Pietro od" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="pow_od" layoutX="437.0" layoutY="61.0" mnemonicParsing="false" text="Pow od" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="pokoje_od" layoutX="435.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje od" GridPane.rowIndex="4" />
+                              <CheckBox fx:id="pokoje_do" layoutX="520.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje do" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <CheckBox fx:id="rodzaj" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" text="Rodzaj" />
+                              <CheckBox fx:id="typ" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" text="Typ nieruchomości" GridPane.columnIndex="1" />
+                              <CheckBox fx:id="pietro_do" layoutX="520.0" layoutY="81.0" mnemonicParsing="false" text="Pietro do" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="miasto" layoutX="437.0" layoutY="40.0" mnemonicParsing="false" text="Miasto" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="pow_do" layoutX="520.0" layoutY="61.0" mnemonicParsing="false" text="Pow do" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
                      </children>
                   </HBox>
-                  <Button fx:id="szukajBtn" contentDisplay="CENTER" layoutX="224.0" layoutY="104.0" mnemonicParsing="false" onAction="#getOffers" prefHeight="30.0" prefWidth="151.0" text="Szukaj ofert" textAlignment="CENTER" />
-                  <CheckBox fx:id="rodzaj" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" text="Rodzaj" />
-                  <CheckBox fx:id="typ" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" text="Typ nieruchomości" />
-                  <CheckBox fx:id="miasto" layoutX="437.0" layoutY="40.0" mnemonicParsing="false" text="Miasto" />
-                  <CheckBox fx:id="dzielnica" layoutX="520.0" layoutY="40.0" mnemonicParsing="false" text="Dzielnica" />
-                  <CheckBox fx:id="pow_od" layoutX="437.0" layoutY="61.0" mnemonicParsing="false" text="Pow od" />
-                  <CheckBox fx:id="pow_do" layoutX="520.0" layoutY="61.0" mnemonicParsing="false" text="Pow do" />
-                  <CheckBox fx:id="pietro_od" layoutX="437.0" layoutY="81.0" mnemonicParsing="false" text="Pietro od" />
-                  <CheckBox fx:id="pietro_do" layoutX="520.0" layoutY="81.0" mnemonicParsing="false" text="Pietro do" />
-                  <CheckBox fx:id="pokoje_od" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje od" />
-                  <CheckBox fx:id="pokoje_do" layoutX="520.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje do" />
                </children>
           </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="160.0">
           <children>
-                  <TableView id="ofertyTable" fx:id="ofertyTabela" layoutX="14.0" layoutY="46.0" prefHeight="149.0" prefWidth="721.0">
+                  <TableView id="ofertyTable" fx:id="ofertyTabela" layoutX="14.0" layoutY="46.0" prefHeight="164.0" prefWidth="721.0">
                      <columns>
                         <TableColumn fx:id="idOferty" prefWidth="39.0" text="ID " />
                         <TableColumn fx:id="Status" prefWidth="61.0" text="STATUS" />
@@ -52,7 +69,7 @@
                      </columns>
                   </TableView>
                   <Label id="wynikLbl" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="107.0" text="Wynik:" />
-                  <Button id="dodajDoPreferowanychBtn" fx:id="dodajPreferowane" layoutX="287.0" layoutY="217.0" mnemonicParsing="false" onAction="#addOffer" prefHeight="17.0" prefWidth="166.0" text="Dodaj do preferowanych ofert" />
+                  <Button id="dodajDoPreferowanychBtn" fx:id="dodajPreferowane" layoutX="291.0" layoutY="222.0" mnemonicParsing="false" onAction="#addOffer" prefHeight="25.0" prefWidth="166.0" text="Dodaj do preferowanych ofert" />
                </children>
           </AnchorPane>
         </items>

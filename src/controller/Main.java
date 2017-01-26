@@ -27,7 +27,7 @@ public class Main extends Application {
 	private TabPane rootLayout;
 	private AnchorPane offersLayout;
 	private AnchorPane negotiationsLayout;
-	private ObservableList<Negotiation> negotiationsData = FXCollections.observableArrayList();
+	public ObservableList<Negotiation> negotiationsData = FXCollections.observableArrayList();
 	private ObservableList<Negotiation> offersData = FXCollections.observableArrayList();
 	private DatabaseConnection dbConnection;
 	private Connection connection;
@@ -92,6 +92,7 @@ public class Main extends Application {
 						rs.getInt("NR_BUDYNKU")));
 			}
 			negotiationsData.addAll(result);
+			stmt.close();
 		} catch (java.sql.SQLException e) {
 			e.printStackTrace();
 		}

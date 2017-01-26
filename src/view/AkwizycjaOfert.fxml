@@ -9,7 +9,7 @@
 	<children>
 		<AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-				<TableView id="negocjacieTable" fx:id="negocjacjeTable" layoutX="19.0" layoutY="39.0" prefHeight="249.0" prefWidth="696.0">
+				<TableView id="negocjacieTable" fx:id="negocjacjeTable" layoutX="19.0" layoutY="39.0" prefHeight="318.0" prefWidth="696.0">
 					<columns>
 						<TableColumn id="idBudynkuColumn" fx:id="idBudynkuColumn" prefWidth="52.0" text="ID BUDYNKU" />
 						<TableColumn id="deweloperColumn" fx:id="deweloperColumn" prefWidth="75.0" text="DEWELOPER" />
@@ -23,7 +23,7 @@
 						<TableColumn id="nrBudynkuColumn" fx:id="nrBudynkuColumn" prefWidth="94.0" text="NR. BUDYNKU" />
 					</columns>
 				</TableView>
-				<Button fx:id="btnLoadProperties" layoutX="277.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleLoadProperties" prefHeight="59.0" prefWidth="181.0" text="Załaduj nieruchomości do bazy" />
+				<Button fx:id="btnLoadProperties" layoutX="277.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleLoadProperties" prefHeight="42.0" prefWidth="181.0" text="Załaduj nieruchomości do bazy" />
 				<Label id="negocjacjeLbl" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="135.0" text="Prowadzone negocjacje:" />
 			</children>
 		</AnchorPane>

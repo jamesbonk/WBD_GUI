@@ -2,6 +2,7 @@ package application;
 
 import java.sql.Statement;
 import java.sql.Types;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,22 +25,25 @@ public class DatabaseConnection {
 
 	public void loadProperties(Negotiation n) {
 		Statement stmt = null;
-		String query = "{call update_NIERUCHOMOSCI(2)}";
-		PreparedStatement callStmt = null;
+		String query = "{call update_NIERUCHOMOSCI(?)}";
+		CallableStatement callStmt = null;
 
 		try {
-			//this.mainApp.getConnection().prepareCall( query);
-
 			 callStmt = this.mainApp.getConnection().prepareCall(query);
-			 //callStmt.setInt(1,n.getID_BUDYNKU());
-			 callStmt.executeQuery();
-			//stmt.executeQuery(query);
+			 callStmt.setInt(1,n.getID_BUDYNKU());
+			 callStmt.execute();
+
 
 		} catch (java.sql.SQLException e) {
 			e.printStackTrace();
-		}
+		}finally{
+			try {
+				callStmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		   }
 	}
-
 	public void setMain(Main mainApp) {
 		this.mainApp = mainApp;
 	}
@@ -55,7 +59,7 @@ public class DatabaseConnection {
 		}
 
 		try {
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "Motykson", "siekiera15");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "jamesbonk", "tona101");
 
 		} catch (SQLException e) {
 			System.out.println("Connection failed");

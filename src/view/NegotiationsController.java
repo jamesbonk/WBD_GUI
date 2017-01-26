@@ -76,6 +76,8 @@ public class NegotiationsController {
 	        	this.dbConn.loadProperties(n);
 	        }
 	        }
+	        this.mainApp.negotiationsData.clear();
+			this.mainApp.loadNegotiations();
 	    }
 
 }
