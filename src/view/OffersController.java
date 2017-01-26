@@ -127,6 +127,7 @@ public class OffersController {
         PreparedStatement getPreferences = null;
         this.selectedClient = getClient();
         DisablePreferences();
+        this.offersData.clear();
 
         try {
             getPreferences = this.connection.prepareStatement(query);
