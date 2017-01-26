@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersController">
    <children>
-      <SplitPane dividerPositions="0.5" layoutX="173.0" layoutY="31.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.5" layoutX="173.0" layoutY="31.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="750.0" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
           <children>
@@ -35,24 +35,24 @@
                   <CheckBox fx:id="pokoje_do" layoutX="520.0" layoutY="110.0" mnemonicParsing="false" text="Pokoje do" />
                </children>
           </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="160.0">
           <children>
-                  <TableView id="ofertyTable" layoutX="14.0" layoutY="46.0" prefHeight="149.0" prefWidth="721.0">
+                  <TableView id="ofertyTable" fx:id="ofertyTabela" layoutX="14.0" layoutY="46.0" prefHeight="149.0" prefWidth="721.0">
                      <columns>
-                        <TableColumn prefWidth="39.0" text="ID " />
-                        <TableColumn prefWidth="61.0" text="STATUS" />
-                        <TableColumn prefWidth="73.0" text="RODZAJ" />
-                        <TableColumn prefWidth="76.0" text="CENA" />
-                        <TableColumn prefWidth="64.0" text="MIASTO" />
-                        <TableColumn prefWidth="73.0" text="ULICA" />
-                        <TableColumn prefWidth="69.0" text="TYP" />
-                        <TableColumn prefWidth="68.0" text="POW. " />
-                        <TableColumn prefWidth="93.0" text="PIĘTRO" />
-                        <TableColumn prefWidth="103.0" text="POKOJE" />
+                        <TableColumn fx:id="idOferty" prefWidth="39.0" text="ID " />
+                        <TableColumn fx:id="Status" prefWidth="61.0" text="STATUS" />
+                        <TableColumn fx:id="Rodzaj" prefWidth="73.0" text="RODZAJ" />
+                        <TableColumn fx:id="Cena" prefWidth="76.0" text="CENA" />
+                        <TableColumn fx:id="Miasto" prefWidth="64.0" text="MIASTO" />
+                        <TableColumn fx:id="Ulica" prefWidth="73.0" text="ULICA" />
+                        <TableColumn fx:id="Typ" prefWidth="69.0" text="TYP" />
+                        <TableColumn fx:id="Powierzchnia" prefWidth="68.0" text="POW. " />
+                        <TableColumn fx:id="Pietro" prefWidth="93.0" text="PIĘTRO" />
+                        <TableColumn fx:id="Pokoje" prefWidth="103.0" text="POKOJE" />
                      </columns>
                   </TableView>
                   <Label id="wynikLbl" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="107.0" text="Wynik:" />
-                  <Button id="dodajDoPreferowanychBtn" layoutX="287.0" layoutY="217.0" mnemonicParsing="false" text="Dodaj do preferowanych ofert" />
+                  <Button id="dodajDoPreferowanychBtn" fx:id="dodajPreferowane" layoutX="287.0" layoutY="217.0" mnemonicParsing="false" onAction="#addOffer" prefHeight="17.0" prefWidth="166.0" text="Dodaj do preferowanych ofert" />
                </children>
           </AnchorPane>
         </items>

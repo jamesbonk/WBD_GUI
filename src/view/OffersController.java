@@ -11,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import model.Negotiation;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -30,6 +29,7 @@ import java.util.Map;
 
 import application.DatabaseConnection;
 import controller.Main;
+import model.Ofert;
 
 /**
  * Created by Tomasz Motyka on 2017-01-20.
@@ -40,7 +40,8 @@ public class OffersController {
     private DatabaseConnection dbConnection;
     private Main mainApp;
     Connection connection;
-
+    private int selectedClient;
+    private ObservableList<Ofert> offersData = FXCollections.observableArrayList();
 
     @FXML private ComboBox<String> preferencjeSelectBox;
     @FXML private ChoiceBox<String> klientSelectBox;
@@ -57,11 +58,24 @@ public class OffersController {
 
 
 
+    @FXML private TableView<Ofert> ofertyTabela;
+    @FXML private TableColumn<Ofert, Integer> idOferty;
+    @FXML private TableColumn<Ofert, String> Status;
+    @FXML private TableColumn<Ofert, String> Rodzaj;
+    @FXML private TableColumn<Ofert, Integer> Cena;
+    @FXML private TableColumn<Ofert, String> Miasto;
+    @FXML private TableColumn<Ofert, String> Ulica;
+    @FXML private TableColumn<Ofert, String> Typ;
+    @FXML private TableColumn<Ofert, Integer> Powierzchnia;
+    @FXML private TableColumn<Ofert, Integer> Pietro;
+    @FXML private TableColumn<Ofert, Integer> Pokoje;
+
+
 
     public OffersController() {
     	 this.dbConnection = new DatabaseConnection();
          this.connection = dbConnection.GetConnection();
-
+         this.offersData = FXCollections.observableArrayList();
     }
 
 
@@ -83,7 +97,7 @@ public class OffersController {
         catch(java.sql.SQLException e){
             e.printStackTrace();
         }
-      
+        //loadData();
     }
 
     public int getClient()
@@ -111,12 +125,12 @@ public class OffersController {
 
         String query = "select NAZWA from WARTOSCI_PREFERENCJI w join PREFERENCJE p on p.ID_PREFERENCJI = w.ID_PREFERENCJI WHERE ID_KLIENTA = ?";
         PreparedStatement getPreferences = null;
-        int id = getClient();
+        this.selectedClient = getClient();
         DisablePreferences();
 
         try {
             getPreferences = this.connection.prepareStatement(query);
-            getPreferences.setInt(1, id);
+            getPreferences.setInt(1, this.selectedClient);
             ResultSet rs = getPreferences.executeQuery();
             while (rs.next()){
                 System.out.println(rs.getString("NAZWA"));
@@ -176,7 +190,7 @@ public class OffersController {
 
     @FXML public void getOffers()
     {
-        int clientId = getClient();
+        //int clientId = getClient();
         String query = "SELECT o.ID_OFERTY, o.STATUS, o.RODZAJ, o.CENA, n.MIASTO, n.ULICA, n.TYP, n.POWIERZCHNIA, n.PIETRO, n.POKOJE FROM OFERTY o JOIN NIERUCHOMOSCI n ON o.ID_NIERUCHOMOSCI = n.ID_NIERUCHOMOSCI WHERE ";
         PreparedStatement getOffers = null;
         ResultSet rs = null;
@@ -204,13 +218,18 @@ public class OffersController {
             query = query + "n.DZIELNICA = (SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = (SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'DZIELNICA') AND ID_KLIENTA = ?)";
         if(this.pow_od.isSelected() && this.pow_od.isSelected())
             query = query + "n.POWIERZCHNIA= (SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = (SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'MIASTO') AND ID_KLIENTA = ?)";
-        if(this.pietro_od.isSelected() && this.pietro_do.isSelected())
-            query = query + "n.PIETRO BETWEEN \n" +
-                    "(SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = \n" +
-                    "(SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'PIETRO_OD') AND ID_KLIENTA = ?) AND  \n" +
-                    "(SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = \n" +
+        */
+        if(this.pietro_od.isSelected() && this.pietro_do.isSelected()) {
+            a = a + 2;
+            if (a != 2)
+                query = query + " AND ";
+            query = query + "n.PIETRO BETWEEN " +
+                    "(SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = " +
+                    "(SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'PIETRO_OD') AND ID_KLIENTA = ?) AND  " +
+                    "(SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = " +
                     "(SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'PIETRO_DO') AND ID_KLIENTA = ?)";
-        if(this.pokoje_od.isSelected() && this.pokoje_do.isSelected())
+        }
+        /*if(this.pokoje_od.isSelected() && this.pokoje_do.isSelected())
             query = query + "o.RODZAJ = (SELECT WARTOSC FROM WARTOSCI_PREFERENCJI WHERE ID_PREFERENCJI = (SELECT ID_PREFERENCJI FROM PREFERENCJE WHERE NAZWA = 'MIASTO') AND ID_KLIENTA = ?)";
         */
         System.out.println(query);
@@ -218,17 +237,23 @@ public class OffersController {
         {
             getOffers = this.connection.prepareStatement(query);
             for (int i = 1; i <= a; i++){
-                getOffers.setInt(i, clientId);
+                getOffers.setInt(i, this.selectedClient);
                 System.out.println(i) ;
             }
             rs = getOffers.executeQuery();
-
+            List<Ofert> result = new ArrayList<>();
             while(rs.next())
             {
 
-                // TO DO.... ZCZYTYWANIE Z rs WIERSZY I WYSWIETLENIE W TABELI
+                result.add(new Ofert(rs.getInt("ID_OFERTY"), rs.getString("STATUS"), rs.getString("RODZAJ"), rs.getInt("CENA"),
+                        rs.getString("MIASTO"), rs.getString("ULICA"), rs.getString("TYP"), rs.getInt("POWIERZCHNIA"),
+                        rs.getInt("PIETRO"), rs.getInt("POKOJE")));
 
             }
+            offersData.addAll(result);
+            loadData();
+            ofertyTabela.setItems(offersData);
+
         }
         catch(java.sql.SQLException e)
         {
@@ -237,7 +262,38 @@ public class OffersController {
 
     }
 
-	
+	private void loadData(){
+        idOferty.setCellValueFactory(cellData -> cellData.getValue().getID_OFERTYProperty().asObject());
+        Status.setCellValueFactory(cellData -> cellData.getValue().getSTATUSProperty());
+        Rodzaj.setCellValueFactory(cellData -> cellData.getValue().getRODZAJProperty());
+        Cena.setCellValueFactory(cellData -> cellData.getValue().getCENAProperty().asObject());
+        Miasto.setCellValueFactory(cellData -> cellData.getValue().getMIASTOProperty());
+        Ulica.setCellValueFactory(cellData -> cellData.getValue().getULICAProperty());
+        Typ.setCellValueFactory(cellData -> cellData.getValue().getTYPProperty());
+        Powierzchnia.setCellValueFactory(cellData -> cellData.getValue().getPOWIERZCHNIAProperty().asObject());
+        Pietro.setCellValueFactory(cellData -> cellData.getValue().getPIETROProperty().asObject());
+        Pokoje.setCellValueFactory(cellData -> cellData.getValue().getPOKOJEProperty().asObject());
+    }
+
+    @FXML private void addOffer()
+    {
+
+       Ofert oferta = ofertyTabela.getSelectionModel().getSelectedItem();
+       System.out.println(oferta.getID_OFERTY());
+       String query = "INSERT INTO PREFEROWANE_OFERTY VALUES (?,?)";
+       PreparedStatement insertOffer = null;
+
+       try{
+           insertOffer = this.connection.prepareStatement(query);
+           insertOffer.setInt(1, this.selectedClient);
+           insertOffer.setInt(2, oferta.getID_OFERTY());
+           insertOffer.executeQuery();
+       }
+       catch(java.sql.SQLException e){
+           e.printStackTrace();
+       }
+
+    }
 	public void setMain(Main main){
 		this.mainApp = main;
 	}
