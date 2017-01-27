@@ -242,7 +242,13 @@ public class OffersController {
                 getOffers.setInt(i, this.selectedClient);
                 System.out.println(i) ;
             }
-            rs = getOffers.executeQuery();
+            try {
+                rs = getOffers.executeQuery();
+            }
+            catch (java.sql.SQLException e){
+
+                e.printStackTrace();
+            }
             List<Ofert> result = new ArrayList<>();
             while(rs.next())
             {
