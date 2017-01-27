@@ -192,6 +192,7 @@ public class OffersController {
     @FXML public void getOffers()
     {
         //int clientId = getClient();
+        this.offersData.clear();
         String query = "SELECT o.ID_OFERTY, o.STATUS, o.RODZAJ, o.CENA, n.MIASTO, n.ULICA, n.TYP, n.POWIERZCHNIA, n.PIETRO, n.POKOJE FROM OFERTY o JOIN NIERUCHOMOSCI n ON o.ID_NIERUCHOMOSCI = n.ID_NIERUCHOMOSCI WHERE ";
         PreparedStatement getOffers = null;
         ResultSet rs = null;
